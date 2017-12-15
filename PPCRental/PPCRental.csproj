@@ -483,6 +483,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Share\Slider.cshtml" />
     <Content Include="Views\HomePage\AboutUS.cshtml" />
+    <Content Include="Views\HomePage\Contact.cshtml" />
+    <Content Include="Views\HomePage\Project.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

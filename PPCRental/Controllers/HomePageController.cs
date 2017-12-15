@@ -35,10 +35,24 @@ namespace PPCRental.Controllers
             ViewData["project"] = product;
             return View();
         }
-        public ActionResult AboutUS(string text)
+        public ActionResult AboutUS()
         {
             ViewBag.Message = "Your website description page";
             return View();
         }
+
+        public ActionResult Contact()
+        {
+            
+            return View();
+        }
+        public ActionResult Project()
+        {
+            var project = ViewData["project"] as List<PPCRental.Models.PROPERTY>;
+            return View();
+        }
+
+
+
     }
 }
