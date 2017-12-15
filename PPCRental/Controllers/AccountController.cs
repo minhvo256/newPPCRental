@@ -66,34 +66,23 @@ namespace PPCRental.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(USER model)
         {
-            if (ModelState.IsValid)
+            var userDetails = db.USERs.FirstOrDefault(x => x.Email == model.Email);
+            //Console.WriteLine(userDetails);
+            if (userDetails.Password == hashPwd(model.Password))
             {
-                var userDetails = db.USERs.FirstOrDefault(x => x.Email == model.Email);
-                if (userDetails.Password == hashPwd(model.Password))
-                {
-                    Session["EmailID"] = userDetails.ID;
-                    Session["Email"] = userDetails.Email;
-                    return RedirectToAction("Index", "HomePage");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                    return View();
-                }
+                Session["EmailID"] = userDetails.ID;
+                Session["Email"] = userDetails.Email;
+                return RedirectToAction("Index", "HomePage");
             }
             else
             {
-                ModelState.AddModelError("", "wrong");
+                ModelState.AddModelError("", "Invalid username or password.");
+                return View();
             }
-            return View("Index");
-
-
-
-
         }
     }
 }

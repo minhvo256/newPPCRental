@@ -57,7 +57,7 @@
                 @foreach (var item in project)
                 {
                     <div class="posts-i">
-                        <a class="posts-i-img" href="/Detail/Detail/@item.ID">
+                        <a class="posts-i-img" href="~/Project/Detail/@item.ID">
                             <span style="background: url(/Asset/User/Images/@item.Avatar)"></span>
 
                         </a>
@@ -66,9 +66,9 @@
                             <p>
                                 <h1 class=" posts-i-ttl">@*<a href="blog.html" class="posts-i-ctg">*@ @item.PropertyName @*</a>*@ </h1>
                                 <h3 class="posts-i-ttl"> </h3>
-                                <a href="/Detail/Detail/@item.ID">@item.Content.Substring(0, 100)</a>
+                                <a href="~/Project/Detail/@item.ID">@item.Content.Substring(0, 100)</a>
 
-                            <p><a href="/Detail/Detail/@item.ID" class="btn btn-default" role="button">Detail</a></p>
+                            <p><a href="~/Project/Detail/@item.ID" class="btn btn-default" role="button">Detail</a></p>
 
                         </div>
                     </div>
