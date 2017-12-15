@@ -487,6 +487,8 @@
     <Content Include="Views\HomePage\Project.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Project\Detail.cshtml" />
+    <Content Include="Views\Project\List.cshtml" />
+    <Content Include="Views\Project\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

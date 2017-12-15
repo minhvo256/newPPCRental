@@ -48,11 +48,7 @@ namespace PPCRental.Controllers
             
             return View();
         }
-        public ActionResult Project()
-        {
-            var project = ViewData["project"] as List<PPCRental.Models.PROPERTY>;
-            return View();
-        }
+        
 
 
 

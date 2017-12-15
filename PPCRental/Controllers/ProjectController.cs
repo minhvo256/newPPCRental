@@ -24,5 +24,35 @@ namespace PPCRental.Controllers
             return View();
   
         }
+
+        public ActionResult List()
+        {
+
+            var projects = db.PROPERTies.ToList();
+            ViewData["project"] = projects;
+            ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
+            ViewData["district"] = db.DISTRICTs.ToList();
+
+            return View();
+        }
+
+        public ActionResult Search(int ptypeID, int districtID)
+        {
+            var projects = db.PROPERTies.AsEnumerable();
+            if(ptypeID != 0)
+            {
+                projects = projects.Where(x => x.PropertyType_ID == ptypeID);
+            }
+            if (districtID != 0)
+            {
+                projects = projects.Where(x => x.District_ID == districtID);
+            }
+
+            ViewData["project"] = projects.ToList();
+            ViewData["property_type"] = db.PROPERTY_TYPE.ToList();
+            ViewData["district"] = db.DISTRICTs.ToList();
+
+            return View();
+        }
     }
 }
