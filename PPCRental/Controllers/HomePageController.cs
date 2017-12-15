@@ -45,12 +45,7 @@ namespace PPCRental.Controllers
 
         public ActionResult Contact()
         {
-            
             return View();
         }
-        
-
-
-
     }
 }
