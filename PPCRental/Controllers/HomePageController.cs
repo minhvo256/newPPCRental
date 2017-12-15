@@ -14,9 +14,11 @@ namespace PPCRental.Controllers
         // GET: HomePage
         public ActionResult Index()
         {
-            var p = db.PROPERTies.OrderByDescending(x => x.ID).Take(6).ToList();
-            return View(p);
+            var project = db.PROPERTies.OrderByDescending(x => x.ID).Take(6).ToList();
+            ViewData["project"] = project;
+            return View();
         }
+
         [HttpPost]
         public ActionResult Search (string text)
         {
@@ -24,7 +26,7 @@ namespace PPCRental.Controllers
 
             if (product.Count()>0)
             {
-                ViewBag.Message = "Found " + product.Count() + "matched";
+                ViewBag.Message = "  ";
                
             }
             else
