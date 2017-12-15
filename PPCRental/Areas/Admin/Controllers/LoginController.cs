@@ -14,8 +14,6 @@ namespace PPCRental.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Admin/Login
-        team21Entities db = new team21Entities();
         [HttpGet]
         public ActionResult Index()
         {
@@ -24,18 +22,19 @@ namespace PPCRental.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(USER user)
+        public ActionResult Index(LoginModel model)
         {
             if (ModelState.IsValid)
             {
-                var userDetails = db.USERs.FirstOrDefault(x => x.Email == user.Email);
-                if (userDetails.Password == hashPwd(user.Password))
+                var acc = new UserDB();
+                var result = acc.Login(model.username, model.password);
+                if (result)
                 {
-                    int userID = userDetails.ID;
-                    string role = userDetails.Role;
-                    Session["userID"] = userID;
-                    Session["userRole"] = role;
-                    Console.WriteLine(role);
+                    var user = acc.GetByID(model.username);
+                    var userSession = new UserLogin();
+                    userSession.UserName = user.Email;
+                    userSession.UserID = user.ID;
+                    Session.Add(CommonConstraints.USER_SESSION, userSession);
                     return RedirectToAction("Index", "/HomeAdmin/Index");
                 }
                 else
@@ -48,26 +47,6 @@ namespace PPCRental.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Account does not exist");
             }
             return View("Index");
-        }
-
-        private string hashPwd(string pwd)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-
-            //compute hash from the bytes of text
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(pwd));
-
-            //get hash result after compute it
-            byte[] result = md5.Hash;
-
-            StringBuilder strBuilder = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
-            {
-                //change it into 2 hexadecimal digits
-                //for each byte
-                strBuilder.Append(result[i].ToString("x2"));
-            }
-            return strBuilder.ToString();
         }
     }
 }

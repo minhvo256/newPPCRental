@@ -402,6 +402,7 @@
     <Compile Include="Models\USER.cs">
       <DependentUpon>DbPPCRental.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserDB.cs" />
     <Compile Include="Models\WARD.cs">
       <DependentUpon>DbPPCRental.tt</DependentUpon>
     </Compile>
